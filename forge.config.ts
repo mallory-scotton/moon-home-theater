@@ -14,18 +14,10 @@ import { rendererConfig } from './webpack.renderer.config';
 const config: ForgeConfig = {
   packagerConfig: {
     asar: true,
-    extraResource: [
-      'server/services/ffprobe/bin/ffprobe.exe',
-      'server/services/ffmpeg/bin/ffmpeg.exe'
-    ]
+    extraResource: ['server/services/ffprobe/bin/ffprobe.exe', 'server/services/ffmpeg/bin/ffmpeg.exe']
   },
   rebuildConfig: {},
-  makers: [
-    new MakerSquirrel({}),
-    new MakerZIP({}, ['darwin']),
-    new MakerRpm({}),
-    new MakerDeb({})
-  ],
+  makers: [new MakerSquirrel({}), new MakerZIP({}, ['darwin']), new MakerRpm({}), new MakerDeb({})],
   plugins: [
     new AutoUnpackNativesPlugin({}),
     new WebpackPlugin({

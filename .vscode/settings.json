@@ -1,0 +1,9 @@
+{
+  "editor.tabSize": 2,
+  "editor.renderWhitespace": "all",
+  "editor.insertSpaces": true,
+  "files.insertFinalNewline": true,
+  "javascript.format.semicolons": "insert",
+  "typescript.format.semicolons": "insert",
+  "typescript.format.enable": true
+}

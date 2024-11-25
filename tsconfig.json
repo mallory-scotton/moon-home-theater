@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "allowJs": true,
+    "target": "ES6",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist",
+    "baseUrl": ".",
+    "skipLibCheck": true,
+    "noImplicitAny": true,
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "paths": {
+      "*": ["node_modules/*"],
+      "@/client/*": ["client/*"],
+      "@/server/*": ["server/*"],
+      "@/components/*": ["client/components/*"],
+      "@/services/*": ["server/services/*"],
+      "@/routes/*": ["server/routes/*"],
+      "@/middlewares/*": ["server/middlewares/*"],
+      "@/controllers/*": ["server/controllers/*"],
+      "@/pages/*": ["client/pages/*"],
+      "@/layouts/*": ["client/layouts/*"],
+      "@/sass/*": ["client/sass/*"]
+    },
+    "jsx": "react-jsx"
+  },
+  "include": [
+    "server/**/*",
+    "client/**/*",
+    "common/**/*"
+  ],
+  "watchOptions": {
+    "excludeDirectories": [
+      "**/node_modules",
+      "**/dist"
+    ]
+  }
+}

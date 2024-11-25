@@ -20,7 +20,9 @@ class FFPROBE {
     console.log(args);
 
     // Spawn the child process
-    const child = cp.spawn('ffprobe', args, { cwd: path.dirname(FFPROBE_PATH) });
+    const child = cp.spawn('ffprobe', args, {
+      cwd: path.dirname(FFPROBE_PATH)
+    });
     this.processes.push(child);
 
     // Add an event to remove the process from the array when exited
@@ -29,7 +31,7 @@ class FFPROBE {
     });
 
     // Return the spawned child
-    return (child);
+    return child;
   }
 
   /**
@@ -49,7 +51,7 @@ class FFPROBE {
    * @param filepath The path of the file you want to extract data from
    */
   public async getData(filepath: string): Promise<FfprobeData> {
-    return (new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       // Normalize the file path
       const normalizedPath = path.resolve(filepath);
 
@@ -60,8 +62,10 @@ class FFPROBE {
 
       // Spawn the ffprobe process with the normalized path
       const child = this.spawn([
-        '-v', 'quiet',
-        '-print_format', 'json',
+        '-v',
+        'quiet',
+        '-print_format',
+        'json',
         '-show_streams',
         '-show_format',
         '-show_chapters',
@@ -71,10 +75,14 @@ class FFPROBE {
       let data = '';
 
       // Collect data from the child process
-      child.stdout.on('data', (chunk) => { data += chunk; });
+      child.stdout.on('data', (chunk) => {
+        data += chunk;
+      });
 
       // Handle errors
-      child.stderr.on('data', (error) => { reject(error); });
+      child.stderr.on('data', (error) => {
+        reject(error);
+      });
 
       // Resolve the promise when the process exits
       child.on('exit', (code) => {
@@ -89,8 +97,8 @@ class FFPROBE {
           reject(`ffprobe process exited with code ${code}.`);
         }
       });
-    }));
+    });
   }
-};
+}
 
 export default new FFPROBE();

@@ -28,15 +28,8 @@
     },
     "jsx": "react-jsx"
   },
-  "include": [
-    "server/**/*",
-    "client/**/*",
-    "common/**/*"
-  ],
+  "include": ["server/**/*", "client/**/*", "common/**/*"],
   "watchOptions": {
-    "excludeDirectories": [
-      "**/node_modules",
-      "**/dist"
-    ]
+    "excludeDirectories": ["**/node_modules", "**/dist"]
   }
 }

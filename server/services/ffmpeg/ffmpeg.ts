@@ -29,7 +29,7 @@ class FFMPEG {
     });
 
     // Return the child process instance
-    return (child);
+    return child;
   }
 
   /**
@@ -42,6 +42,6 @@ class FFMPEG {
       }
     }
   }
-};
+}
 
 export default new FFMPEG();

@@ -6,7 +6,7 @@ type BusHandler<EventList> = {
   event: keyof EventList;
   callback: BusCallback<EventList[keyof EventList]>;
   once: boolean;
-}
+};
 
 // Simple event bus class to add events on a class
 export class EventBus<EventList extends Record<string, any>> {
@@ -18,7 +18,10 @@ export class EventBus<EventList extends Record<string, any>> {
    * @param event The event to wait for
    * @param callback The callback when the event is emitted
    */
-  public on<T extends keyof EventList>(event: T, callback: BusCallback<EventList[T]>): void {
+  public on<T extends keyof EventList>(
+    event: T,
+    callback: BusCallback<EventList[T]>
+  ): void {
     this.handlers.push({ event, callback, once: false });
   }
 
@@ -27,7 +30,10 @@ export class EventBus<EventList extends Record<string, any>> {
    * @param event The event to wait for
    * @param callback The callback when the event is emitted
    */
-  public once<T extends keyof EventList>(event: T, callback: BusCallback<EventList[T]>): void {
+  public once<T extends keyof EventList>(
+    event: T,
+    callback: BusCallback<EventList[T]>
+  ): void {
     this.handlers.push({ event, callback, once: true });
   }
 
@@ -36,20 +42,32 @@ export class EventBus<EventList extends Record<string, any>> {
    * @param event The event to emit
    * @param data The data to send in the emittion
    */
-  protected emit<T extends keyof EventList>(event: T, data?: EventList[T]): void {
+  protected emit<T extends keyof EventList>(
+    event: T,
+    data?: EventList[T]
+  ): void {
     this.handlers
-      .filter(handler => handler.event === event)
-      .forEach(handler => handler.callback(data));
-    this.handlers = this.handlers.filter(handler => handler.event !== event || !handler.once);
+      .filter((handler) => handler.event === event)
+      .forEach((handler) => handler.callback(data));
+    this.handlers = this.handlers.filter(
+      (handler) => handler.event !== event || !handler.once
+    );
   }
 
-  public off<T extends keyof EventList>(event: T, callback?: BusCallback<EventList[T]>): void {
+  public off<T extends keyof EventList>(
+    event: T,
+    callback?: BusCallback<EventList[T]>
+  ): void {
     if (callback) {
       // Remove handlers matching both the event and the callback
-      this.handlers = this.handlers.filter(handler => !(handler.event === event && handler.callback === callback));
+      this.handlers = this.handlers.filter(
+        (handler) => !(handler.event === event && handler.callback === callback)
+      );
     } else {
       // Remove all handlers for the specified event
-      this.handlers = this.handlers.filter(handler => handler.event !== event);
+      this.handlers = this.handlers.filter(
+        (handler) => handler.event !== event
+      );
     }
   }
 }

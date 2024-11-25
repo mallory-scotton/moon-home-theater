@@ -13,7 +13,11 @@ import { rendererConfig } from './webpack.renderer.config';
 
 const config: ForgeConfig = {
   packagerConfig: {
-    asar: true
+    asar: true,
+    extraResource: [
+      'server/services/ffprobe/bin/ffprobe.exe',
+      'server/services/ffmpeg/bin/ffmpeg.exe'
+    ]
   },
   rebuildConfig: {},
   makers: [

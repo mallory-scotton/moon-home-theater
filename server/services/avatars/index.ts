@@ -31,4 +31,4 @@ export const generateAvatar = (color: string, text: string, size: number): PNGSt
   context.fillText(text.substring(0, 2).toUpperCase(), size / 2, size / 2);
 
   return canvas.createPNGStream();
-}
+};

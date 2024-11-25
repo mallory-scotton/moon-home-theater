@@ -1,15 +1,15 @@
 // Dependencies
 // import '../client';
 
-import { ffprobe } from '@/services/ffprobe';
+import express from 'express';
+import { PORT } from './config';
 
-const TEST_FILE_PATH = 'E:\\Médiathèque\\Films\\Your Name. (2016) 2160p Bluray\\Your Name. (2016) 2160p Bluray.mkv';
+import avatarsRouter from './routes/avatars';
 
-ffprobe
-  .getData(TEST_FILE_PATH)
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+const app = express();
+
+app.use('/avatars', avatarsRouter);
+
+app.listen(PORT, () => {
+  console.log(`HTTP Server is listening on, http://localhost:${PORT}`);
+});

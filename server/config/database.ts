@@ -24,15 +24,20 @@ export const database = new Sequelize({
  * Utility function to synchronise the database
  * @param options The sync options of the database
  */
-export const synchronise = async (options?: SyncOptions) => {
-  try {
-    // Verify the database folder exists
-    mkdirSync(DATABASE_PATH, { recursive: true });
+export const synchronise = (options?: SyncOptions): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    try {
+      // Verify the database folder exists
+      mkdirSync(DATABASE_PATH, { recursive: true });
+    } catch (error) {
+      // Catch potential error when creating the folders
+      reject(error);
+    }
 
     // Synchronise the database
-    await database.sync(options)
-  } catch(error) {
-    console.error(error);
-    process.exit(1);
-  }
-}
+    database
+      .sync(options)
+      .then(() => resolve)
+      .catch(reject);
+  });
+};

@@ -1,8 +1,8 @@
 // Dependencies
-import dotenv from 'dotenv';
+import { config } from 'dotenv';
 
 // Query the environnement configuration
-dotenv.config();
+config();
 
 // Export configuration
 export const PORT = process.env.PORT || 45455;

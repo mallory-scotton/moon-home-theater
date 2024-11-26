@@ -4,8 +4,14 @@ import { Router } from 'express';
 // Create a new express router
 const router = Router();
 
-// Get a transcode session
+// Get a list of transcode sessions
 router.get('/sessions');
+
+// Get a transcode session
+router.get('/sessions/:sessionKey');
+
+// Create a transcode session
+router.post('/sessions');
 
 // Stop a trancode session
 router.delete('/sessions/:sessionKey');

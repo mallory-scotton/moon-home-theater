@@ -39,7 +39,7 @@ const generateAvatar = (color: string, text: string, size: number): PNGStream =>
  * @param req The HTTP request
  * @param res The HTTP response
  */
-export const avatarController: RequestHandler = (req, res): any => {
+export const avatarController: RequestHandler = (req, res): void => {
   // Spread the parameters
   const { color, text, size } = req.params;
 

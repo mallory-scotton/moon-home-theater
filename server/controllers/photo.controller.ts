@@ -7,4 +7,4 @@ import sharp from 'sharp';
  * @param req The HTTP request
  * @param res The HTTP response
  */
-export const photoController: RequestHandler = (req, res): any => {};
+export const photoController: RequestHandler = (req, res): void => {};

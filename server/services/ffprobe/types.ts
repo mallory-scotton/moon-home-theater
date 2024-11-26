@@ -60,6 +60,7 @@ export interface FfprobeStream {
   bits_per_sample?: number;
   disposition?: FfprobeStreamDisposition;
   rotation?: string | number;
+  tags?: Record<string, string | number>;
 }
 
 export interface FfprobeFormat {

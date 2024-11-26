@@ -1,29 +1,34 @@
 // Dependencies
+import joi from 'joi';
 import { Router } from 'express';
-import { generateAvatar } from '../services/avatars';
-import { avatarValidator } from '../validators/avatars';
+import { avatarController } from '../controllers/avatar.controller';
+import { validator } from '@/middlewares/validator.middleware';
 
 // Create the router
 const router = Router();
 
-// Generate an avatar based on a color, text and size.
-router.get('/:color/:text/:size', avatarValidator, (req, res): any => {
-  // Spread the parameters
-  const { color, text, size } = req.params;
-
-  // Parse the size to int
-  const parsedSize = parseInt(size);
-
-  // Try generating the image
-  try {
-    const stream = generateAvatar(color, text, parsedSize);
-    // Return the image
-    res.setHeader('Content-Type', 'image/png');
-    stream.pipe(res);
-  } catch (error) {
-    res.status(500).json({ status: 'error', status_message: 'Failed to generate avatar.' });
-  }
+// Create a validator schema
+const avatarSchema = joi.object({
+  color: joi
+    .string()
+    .required()
+    .pattern(/^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/)
+    .messages({
+      'string.base': 'Invalid color format. Please use a valid HEX color (e.g., 088DD2).',
+      'string.pattern.base': 'Invalid color format. Please use a valid HEX color (e.g., 088DD2).'
+    }),
+  text: joi.string().required(),
+  size: joi
+    .number()
+    .integer()
+    .messages({
+      'number.base': 'Invalid size. Size must be a number between 16 and 1024.',
+      'number.integer': 'Invalid size. Size must be a number between 16 and 1024.'
+    })
 });
+
+// Generate an avatar based on a color, text and size.
+router.get('/:color/:text/:size', validator.params(avatarSchema), avatarController);
 
 // Export the router
 export default router;

@@ -21,11 +21,11 @@ class Validator {
       }
 
       // set the destination to the value of the schema
-      req[where] = {...req[where], ...validation.value};
+      req[where] = { ...req[where], ...validation.value };
 
       // Next handler
       next();
-    }
+    };
   }
 
   /**

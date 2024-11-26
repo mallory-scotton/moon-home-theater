@@ -1,6 +1,7 @@
 // Dependencies
 import { PNGStream, createCanvas } from 'canvas';
-import { clamp } from '../../../common/utils/math';
+import { clamp } from '../../common/utils/math';
+import { RequestHandler } from 'express';
 
 /**
  * Generate an avatar based on a color and a text
@@ -9,7 +10,7 @@ import { clamp } from '../../../common/utils/math';
  * @param size The size of the avatar in pixel
  * @returns A png stream of the avatar
  */
-export const generateAvatar = (color: string, text: string, size: number): PNGStream => {
+const generateAvatar = (color: string, text: string, size: number): PNGStream => {
   // Clamp size between allowed range
   size = clamp(size, 16, 1024);
 
@@ -31,4 +32,27 @@ export const generateAvatar = (color: string, text: string, size: number): PNGSt
   context.fillText(text.substring(0, 2).toUpperCase(), size / 2, size / 2);
 
   return canvas.createPNGStream();
+};
+
+/**
+ * Handle the HTTP request of an avatar image
+ * @param req The HTTP request
+ * @param res The HTTP response
+ */
+export const avatarController: RequestHandler = (req, res): any => {
+  // Spread the parameters
+  const { color, text, size } = req.params;
+
+  // Parse the size to int
+  const parsedSize = parseInt(size);
+
+  // Try generating the image
+  try {
+    const stream = generateAvatar(color, text, parsedSize);
+    // Return the image
+    res.setHeader('Content-Type', 'image/png');
+    stream.pipe(res);
+  } catch (error) {
+    res.status(500).json({ status: 'error', status_message: 'Failed to generate avatar.' });
+  }
 };

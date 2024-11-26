@@ -1,5 +1,5 @@
 // type for the event bus callback
-type BusCallback<T = any> = (data?: T) => void;
+type BusCallback<T = unknown> = (data?: T) => void;
 
 // Type of the event bus handlers
 type BusHandler<EventList> = {
@@ -9,7 +9,7 @@ type BusHandler<EventList> = {
 };
 
 // Simple event bus class to add events on a class
-export class EventBus<EventList extends Record<string, any>> {
+export class EventBus<EventList extends Record<string, unknown>> {
   // The list of handlers in the class
   private handlers: BusHandler<EventList>[] = [];
 

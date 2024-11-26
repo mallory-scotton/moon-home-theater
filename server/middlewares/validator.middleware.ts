@@ -11,13 +11,14 @@ class Validator {
    * @returns A new middleware for the wanted schema
    */
   private validate(where: 'params' | 'query' | 'body', schema: Schema): RequestHandler {
-    return (req, res, next): any => {
+    return (req, res, next): void => {
       // Get the schema validation
       const validation = schema.validate(req[where], { abortEarly: true });
 
       // On error, HTTP error 422
       if (validation.error) {
-        return res.status(422).json({ status: 'error', status_message: validation.error.details[0].message });
+        res.status(422).json({ status: 'error', status_message: validation.error.details[0].message });
+        return;
       }
 
       // set the destination to the value of the schema

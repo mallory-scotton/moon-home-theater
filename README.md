@@ -1,5 +1,5 @@
 <h1 align="center">Moon Home Theater</h1>
-<h3 align="center">he Free Software Media System</h3>
+<h3 align="center">The Free Software Media System</h3>
 
 ---
 

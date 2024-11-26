@@ -18,13 +18,10 @@ const avatarSchema = joi.object({
       'string.pattern.base': 'Invalid color format. Please use a valid HEX color (e.g., 088DD2).'
     }),
   text: joi.string().required(),
-  size: joi
-    .number()
-    .integer()
-    .messages({
-      'number.base': 'Invalid size. Size must be a number between 16 and 1024.',
-      'number.integer': 'Invalid size. Size must be a number between 16 and 1024.'
-    })
+  size: joi.number().integer().messages({
+    'number.base': 'Invalid size. Size must be a number between 16 and 1024.',
+    'number.integer': 'Invalid size. Size must be a number between 16 and 1024.'
+  })
 });
 
 // Generate an avatar based on a color, text and size.

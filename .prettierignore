@@ -1,4 +1,9 @@
 node_modules/
 .webpack/
+.github/
 .vscode/
 docs/
+out/
+bin/
+assets/
+*.exe

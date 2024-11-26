@@ -24,7 +24,8 @@
       "@/controllers/*": ["server/controllers/*"],
       "@/pages/*": ["client/pages/*"],
       "@/layouts/*": ["client/layouts/*"],
-      "@/sass/*": ["client/sass/*"]
+      "@/sass/*": ["client/sass/*"],
+      "@/validators/*": ["server/validators/*"]
     },
     "jsx": "react-jsx"
   },

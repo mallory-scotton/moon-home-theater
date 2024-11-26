@@ -6,5 +6,8 @@
   "javascript.format.semicolons": "insert",
   "typescript.format.semicolons": "insert",
   "typescript.format.enable": true,
-  "editor.rulers": [119]
+  "editor.rulers": [119],
+  "files.exclude": {
+    "**/node_modules": true
+  }
 }

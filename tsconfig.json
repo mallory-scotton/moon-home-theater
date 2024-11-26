@@ -17,6 +17,7 @@
       "*": ["node_modules/*"],
       "@/client/*": ["client/*"],
       "@/server/*": ["server/*"],
+      "@/common/*": ["common/*"],
       "@/components/*": ["client/components/*"],
       "@/services/*": ["server/services/*"],
       "@/routes/*": ["server/routes/*"],
@@ -30,6 +31,7 @@
     "jsx": "react-jsx"
   },
   "include": ["server/**/*", "client/**/*", "common/**/*"],
+  "exclude": ["node_modules", ".webpack", "out"],
   "watchOptions": {
     "excludeDirectories": ["**/node_modules", "**/dist"]
   }

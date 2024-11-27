@@ -1,6 +1,7 @@
 // Dependencies
 import express from 'express';
 import { PORT } from './config';
+import { logger } from '../common/utils/logger';
 
 // Import middlewares
 import compression from 'compression';
@@ -24,8 +25,8 @@ app.use('/', mainRouter);
 export const listen = (): Promise<void> => {
   return new Promise((resolve, reject) => {
     try {
-      app.listen(PORT, () => {
-        console.log(`HTTP Server is listening on, http://localhost:${PORT}`);
+      const listenner = app.listen(PORT, () => {
+        logger.info('HTTP Server is listening on:', listenner.address());
         resolve();
       });
     } catch (error) {

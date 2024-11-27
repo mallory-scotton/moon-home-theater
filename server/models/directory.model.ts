@@ -13,6 +13,7 @@ import {
   UpdatedAt,
   DeletedAt
 } from 'sequelize-typescript';
+import { MediaPart } from './mediaPart.model';
 
 @Table({
   tableName: 'directories',
@@ -56,4 +57,7 @@ export class Directory extends Model<Directory> {
 
   @HasMany(() => Directory, 'parent_directory_id')
   children_directories?: Directory[];
+
+  @HasMany(() => MediaPart, 'directory_id')
+  media_parts?: MediaPart[];
 }

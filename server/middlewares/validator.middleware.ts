@@ -2,6 +2,7 @@
 import { Schema, valid } from 'joi';
 import { RequestHandler } from 'express';
 
+// Declare new module for the validator value
 declare module 'express-serve-static-core' {
   interface Request {
     value?: any;

@@ -27,9 +27,6 @@ class Validator {
         return;
       }
 
-      // set the destination to the value of the schema
-      req[where] = { ...req[where], ...validation.value };
-
       // Set the value insdie the request
       req.value = validation.value;
 

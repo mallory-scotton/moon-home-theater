@@ -85,6 +85,7 @@
     "electron-squirrel-startup": "1.0.1",
     "express": "4.21.1",
     "fs": "0.0.1-security",
+    "hls.js": "1.5.17",
     "joi": "17.13.3",
     "path": "0.12.7",
     "portfinder": "1.0.32",

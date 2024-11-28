@@ -17,7 +17,7 @@ export const photoController: RequestHandler = async (req, res): Promise<void> =
     let { width, height, opacity, fit, blur, url } = req.value;
 
     // Convert the url into a file path
-    const filepath: string = path.join(MEDIA_PATH, url as string);
+    const filepath: string = path.join(MEDIA_PATH, url);
 
     // Check if the file exists
     try {

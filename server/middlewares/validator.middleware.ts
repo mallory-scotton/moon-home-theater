@@ -4,7 +4,7 @@ import { RequestHandler } from 'express';
 
 declare module 'express-serve-static-core' {
   interface Request {
-    value?: any
+    value?: any;
   }
 }
 

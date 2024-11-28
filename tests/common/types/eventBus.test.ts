@@ -28,7 +28,7 @@ describe('EventBus', () => {
   it('should register a one-time event listener with once()', () => {
     const callback = jest.fn();
     bus.once('eventA', callback);
-    
+
     // Emit the event twice
     bus['emit']('eventA', 'First Call');
     bus['emit']('eventA', 'Second Call');
@@ -40,9 +40,9 @@ describe('EventBus', () => {
   it('should remove an event listener with off()', () => {
     const callback = jest.fn();
     bus.on('eventA', callback);
-    
+
     bus.off('eventA', callback);
-    
+
     // Emit the event
     bus['emit']('eventA', 'Hello World');
 
@@ -54,9 +54,9 @@ describe('EventBus', () => {
     const callback2 = jest.fn();
     bus.on('eventA', callback1);
     bus.on('eventA', callback2);
-    
+
     bus.off('eventA');
-    
+
     // Emit the event
     bus['emit']('eventA', 'Hello World');
 
@@ -81,7 +81,7 @@ describe('EventBus', () => {
     const callback2 = jest.fn();
     bus.on('eventA', callback1);
     bus.on('eventA', callback2);
-    
+
     bus.off('eventA', callback1);
     bus['emit']('eventA', 'Hello World');
 

@@ -10,7 +10,7 @@ export const MEDIA_PATH = path.join(APPDATA, 'Moon Home Theater', 'Media');
 // Verify media path
 try {
   fs.mkdirSync(MEDIA_PATH, { recursive: true });
-  logger.debug('Media path checked!')
+  logger.debug('Media path checked!');
 } catch (error) {
   logger.error('Error detected with the media path');
   process.exit(1);

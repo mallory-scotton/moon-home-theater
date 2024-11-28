@@ -80,5 +80,5 @@ export class MediaStream extends Model<MediaStream> {
   media_item?: MediaItem;
 
   @BelongsTo(() => MediaPart, 'media_part_id')
-  media_part?: MediaPart
+  media_part?: MediaPart;
 }

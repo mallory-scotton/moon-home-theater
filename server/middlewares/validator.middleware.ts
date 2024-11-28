@@ -1,6 +1,12 @@
 // Dependencies
-import { Schema } from 'joi';
+import { Schema, valid } from 'joi';
 import { RequestHandler } from 'express';
+
+declare module 'express-serve-static-core' {
+  interface Request {
+    value?: any
+  }
+}
 
 // Helper class to validate content of a query, params or body
 class Validator {
@@ -23,6 +29,9 @@ class Validator {
 
       // set the destination to the value of the schema
       req[where] = { ...req[where], ...validation.value };
+
+      // Set the value insdie the request
+      req.value = validation.value;
 
       // Next handler
       next();

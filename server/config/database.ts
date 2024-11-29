@@ -60,6 +60,9 @@ export const synchronise = (options?: SyncOptions): Promise<void> => {
       reject(error);
     }
 
+    // Log a start of the database synchronisation
+    logger.verbose('Database synchronisation started...');
+
     // Synchronise the database
     database
       .sync(options)

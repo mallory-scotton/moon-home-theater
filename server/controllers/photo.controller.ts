@@ -23,7 +23,7 @@ export const photoController: RequestHandler = async (req, res): Promise<void> =
     try {
       await fs.access(filepath);
     } catch (error) {
-      res.status(404).json({ status: 'error', status_message: 'Media not found in Moon assets.' });
+      res.status(404).json({ status: 'error', statusMessage: 'Media not found in Moon assets.' });
       return;
     }
 
@@ -52,6 +52,6 @@ export const photoController: RequestHandler = async (req, res): Promise<void> =
     res.end(await image.toFormat('png').toBuffer());
   } catch (error) {
     logger.error('Error processing image:', error);
-    res.status(500).json({ status: 'error', status_message: 'Failed to process the image' });
+    res.status(500).json({ status: 'error', statusMessage: 'Failed to process the image' });
   }
 };

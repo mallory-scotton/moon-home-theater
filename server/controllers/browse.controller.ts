@@ -31,13 +31,13 @@ export const browseHomeController: RequestHandler = async (req, res) => {
         key: `/browse/${Buffer.from(home, 'utf-8').toString('base64')}`
       },
       paths: paths,
-      paths_count: paths.length
+      pathsCount: paths.length
     });
   } catch (error) {
     logger.error('Error append while fetching for home and disks directories:', error);
     res.status(500).json({
       status: 'error',
-      status_message: 'Internal server error while fecthing for home and disks directories.'
+      statusMessage: 'Internal server error while fecthing for home and disks directories.'
     });
   }
 };
@@ -52,7 +52,7 @@ export const browsePathController: RequestHandler = (req, res) => {
     try {
       decodedPath = Buffer.from(guid, 'base64').toString('utf-8');
     } catch (error) {
-      res.status(400).json({ status: 'error', status_message: 'Invalid path encoding.' });
+      res.status(400).json({ status: 'error', statusMessage: 'Invalid path encoding.' });
       return;
     }
 
@@ -62,7 +62,7 @@ export const browsePathController: RequestHandler = (req, res) => {
     // Check if the path exists
     fs.stat(normalized, (error, stats) => {
       if (error) {
-        res.status(404).json({ status: 'error', status_message: 'Path not found.' });
+        res.status(404).json({ status: 'error', statusMessage: 'Path not found.' });
         return;
       }
 
@@ -70,7 +70,7 @@ export const browsePathController: RequestHandler = (req, res) => {
         // If it's a directory, read its content
         fs.readdir(normalized, (error, content) => {
           if (error) {
-            res.status(500).json({ status: 'error', status_message: 'Error reading the directory.' });
+            res.status(500).json({ status: 'error', statusMessage: 'Error reading the directory.' });
             return;
           }
 
@@ -79,26 +79,26 @@ export const browsePathController: RequestHandler = (req, res) => {
               // Send the response
               res.status(200).json({
                 paths: content.paths,
-                paths_count: content.paths.length,
+                pathsCount: content.paths.length,
                 files: include_files ? content.files : undefined,
-                files_count: include_files ? content.files.length : undefined
+                filesCount: include_files ? content.files.length : undefined
               });
             })
             .catch(() => {
               res
                 .status(500)
-                .json({ status: 'error', status_message: 'Internal server error while fecthing for a path.' });
+                .json({ status: 'error', statusMessage: 'Internal server error while fecthing for a path.' });
             });
         });
       } else {
-        res.status(400).json({ status: 'error', status_message: 'Not a directory.' });
+        res.status(400).json({ status: 'error', statusMessage: 'Not a directory.' });
       }
     });
   } catch (error) {
     logger.error('Error append while fetching for a path:', error);
     res.status(500).json({
       status: 'error',
-      status_message: 'Internal server error while fecthing for a path.'
+      statusMessage: 'Internal server error while fecthing for a path.'
     });
   }
 };

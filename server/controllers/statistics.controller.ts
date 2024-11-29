@@ -33,12 +33,12 @@ export const getResourcesStatistics: RequestHandler = (req, res): void => {
         free: freeMemory,
         total: totalMemory,
         used: usedMemory,
-        usage_percentage: ((usedMemory / totalMemory) * 100).toFixed(2)
+        usagePercentage: ((usedMemory / totalMemory) * 100).toFixed(2)
       },
       cpu: {
         count: cpuCount,
         usage: cpuUsage,
-        total_usage: parseFloat(cpuTotalUsage.toFixed(2))
+        totalUsage: parseFloat(cpuTotalUsage.toFixed(2))
       },
       host: {
         hostname: os.hostname(),
@@ -49,13 +49,7 @@ export const getResourcesStatistics: RequestHandler = (req, res): void => {
       process: {
         pid: process.pid,
         uptime: process.uptime(),
-        memory_usage: {
-          rss: processMemory.rss,
-          heap_total: processMemory.heapTotal,
-          heap_used: processMemory.heapUsed,
-          external: processMemory.external,
-          array_buffers: processMemory.arrayBuffers
-        },
+        memory_usage: processMemory,
         cpu_usage: process.cpuUsage()
       }
     });
@@ -63,6 +57,6 @@ export const getResourcesStatistics: RequestHandler = (req, res): void => {
     logger.error('Error fetching resource statistics:', error);
     res
       .status(500)
-      .json({ status: 'error', status_message: 'Internal server error while fetching resources statistics.' });
+      .json({ status: 'error', statusMessage: 'Internal server error while fetching resources statistics.' });
   }
 };

@@ -53,6 +53,6 @@ export const avatarController: RequestHandler = (req, res): void => {
     res.setHeader('Content-Type', 'image/png');
     stream.pipe(res);
   } catch (error) {
-    res.status(500).json({ status: 'error', status_message: 'Failed to generate avatar.' });
+    res.status(500).json({ status: 'error', statusMessage: 'Failed to generate avatar.' });
   }
 };

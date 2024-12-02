@@ -1,0 +1,33 @@
+@use '@/sass/partials' as *;
+
+.tag {
+  box-sizing: border-box;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  user-select: none;
+  isolation: isolate;
+  color: $sys-on-surface-variant;
+}
+
+.default {
+  @include typography(label, small);
+  border-radius: 10px;
+}
+
+.large {
+  @include typography(label, large);
+  border-radius: 12px;
+}
+
+.outlined {
+  @include innerBorder(1px, $sys-surface-variant);
+  background-color: transparent;
+}
+
+.filled {
+  border: none;
+  background-color: $sys-surface-variant;
+}

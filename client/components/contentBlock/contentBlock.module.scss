@@ -1,0 +1,83 @@
+@use '@/sass/partials' as *;
+
+.contentBlock {
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.left
+.left .heading {
+  align-items: flex-start;
+}
+
+.right,
+.right .heading {
+  align-items: flex-end;
+}
+
+.center,
+.center .heading {
+  align-items: center;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  color: $sys-on-surface;
+}
+
+.subtitle,
+.extraText {
+  color: rgba($sys-on-surface, .6);
+}
+
+.description {
+  color: rgba($sys-on-surface, .8);
+}
+
+.extra {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.small {
+  .title {
+    @include typography(title, medium);
+  }
+
+  .subtitle,
+  .description,
+  .extraText {
+    @include typography(body, small);
+  }
+}
+
+.medium {
+  .title {
+    @include typography(title, large);
+  }
+
+  .subtitle,
+  .description,
+  .extraText {
+    @include typography(body, medium);
+  }
+}
+
+.large {
+  .title {
+    @include typography(headline, medium);
+  }
+
+  .subtitle,
+  .description,
+  .extraText {
+    @include typography(body, large);
+  }
+}

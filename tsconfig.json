@@ -26,6 +26,7 @@
       "@/pages/*": ["client/pages/*"],
       "@/layouts/*": ["client/layouts/*"],
       "@/sass/*": ["client/sass/*"],
+      "@/assets/*": ["client/assets/*"],
       "@/validators/*": ["server/validators/*"]
     },
     "jsx": "react-jsx"

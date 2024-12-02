@@ -26,11 +26,7 @@ export const ContentBlock: FC<ContentBlockProps> = ({
   extra
 }) => {
   // Join the classes of the content block
-  const classes = [
-    styles.contentBlock,
-    styles[alignement],
-    styles[size]
-  ].join(' ');
+  const classes = [styles.contentBlock, styles[alignement], styles[size]].join(' ');
 
   // Return the react element of the content block
   return (

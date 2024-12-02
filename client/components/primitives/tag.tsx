@@ -12,11 +12,7 @@ interface TagProps {
 // React Component
 export const Tag: FC<TagProps> = ({ size = 'default', outlined = false, label }) => {
   // Get the classes of the tag component
-  const classes = [
-    styles.tag,
-    styles[size],
-    outlined ? styles.outlined : styles.filled
-  ].join(' ');
+  const classes = [styles.tag, styles[size], outlined ? styles.outlined : styles.filled].join(' ');
 
   // The tag element
   return <div className={classes}>{label}</div>;

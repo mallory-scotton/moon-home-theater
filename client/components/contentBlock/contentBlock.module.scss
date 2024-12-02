@@ -11,8 +11,7 @@
 }
 
 // Left alignement
-.left
-.left .heading {
+.left .left .heading {
   align-items: flex-start;
 }
 
@@ -42,12 +41,12 @@
 // Subtitle and the text of the extra share the same color
 .subtitle,
 .extraText {
-  color: rgba($sys-on-surface, .6);
+  color: rgba($sys-on-surface, 0.6);
 }
 
 // The description color
 .description {
-  color: rgba($sys-on-surface, .8);
+  color: rgba($sys-on-surface, 0.8);
 }
 
 // Extra layout

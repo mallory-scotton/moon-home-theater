@@ -1,0 +1,152 @@
+@use 'sass:map';
+
+// Shared
+
+$font-family: 'Roboto', sans-serif;
+
+// Font weights
+
+$font-weights: (
+  normal: 400,
+  medium: 500
+);
+
+// Mixin for typography
+
+@mixin typography($category, $size) {
+  font-family: $font-family;
+  font-weight: map.get($font-weights, normal);
+
+  // Specific for label and medium/small title
+  @if $category == label or ($category == title and $size != large) {
+    font-weight: map.get($font-weights, medium);
+  }
+
+  // Additional styles based on category
+  @if $category == header {
+    font-size: map.get(
+      (
+        large: 57px,
+        medium: 45px,
+        small: 36px
+      ),
+      $size
+    );
+    letter-spacing: map.get(
+      (
+        large: -0.25px,
+        medium: auto,
+        small: auto
+      ),
+      $size
+    );
+    line-height: map.get(
+      (
+        large: 64px,
+        medium: 52px,
+        small: 44px
+      ),
+      $size
+    );
+  } @else if $category == headline {
+    font-size: map.get(
+      (
+        large: 32px,
+        medium: 28px,
+        small: 24px
+      ),
+      $size
+    );
+    line-height: map.get(
+      (
+        large: 40px,
+        medium: 36px,
+        small: 32px
+      ),
+      $size
+    );
+  } @else if $category == title {
+    font-size: map.get(
+      (
+        large: 22px,
+        medium: 16px,
+        small: 14px
+      ),
+      $size
+    );
+    letter-spacing: map.get(
+      (
+        large: 0.15px,
+        medium: 0.1px,
+        small: 0.1px
+      ),
+      $size
+    );
+    line-height: map.get(
+      (
+        large: 28px,
+        medium: 24px,
+        small: 20px
+      ),
+      $size
+    );
+  } @else if $category == label {
+    font-size: map.get(
+      (
+        large: 14px,
+        medium: 12px,
+        small: 11px
+      ),
+      $size
+    );
+    letter-spacing: map.get(
+      (
+        large: 0.1px,
+        medium: 0.25px,
+        small: 0.1px
+      ),
+      $size
+    );
+    line-height: map.get(
+      (
+        large: 20px,
+        medium: 16px,
+        small: 16px
+      ),
+      $size
+    );
+  } @else if $category == body {
+    font-size: map.get(
+      (
+        large: 16px,
+        medium: 14px,
+        small: 12px
+      ),
+      $size
+    );
+    letter-spacing: map.get(
+      (
+        large: 0.25px,
+        medium: 0.25px,
+        small: 0.2px
+      ),
+      $size
+    );
+    line-height: map.get(
+      (
+        large: 24px,
+        medium: 20px,
+        small: 16px
+      ),
+      $size
+    );
+  }
+}
+
+// Mixin for inner border
+
+@mixin innerBorder($size, $color) {
+  -webkit-box-shadow: inset 0px 0px 0px $size $color;
+  -moz-box-shadow: inset 0px 0px 0px $size $color;
+  box-shadow: inset 0px 0px 0px $size $color;
+}

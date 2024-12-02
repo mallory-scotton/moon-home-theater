@@ -43,12 +43,14 @@ rules.push({
 
 // Adding the file loader for image assets
 rules.push({
-  test: /\.(png|jpe?g|gif|svg)$/i,
+  test: /\.(png|jpe?g|gif|svg|ico)$/i,
   use: [
     {
       loader: 'file-loader',
       options: {
-        outputPath: 'images'
+        name: '[name].[hash].[ext]',
+        outputPath: 'images/',
+        publicPath: 'images/'
       }
     }
   ]

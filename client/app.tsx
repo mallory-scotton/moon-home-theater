@@ -1,7 +1,6 @@
 // Dependencies
-import { lazy, StrictMode } from 'react';
+import { StrictMode } from 'react';
 import { render } from 'react-dom';
-
 // Styles
 import '@/sass/styles.scss';
 
@@ -9,9 +8,12 @@ import '@/sass/styles.scss';
 import { Card } from '@/components/cards';
 import { ContentBlock } from '@/components/contentBlock';
 
+// Images
+import poster from '@/assets/template/poster.png';
+
 render(
   <StrictMode>
-    <Card>
+    <Card src={poster}>
       <ContentBlock
         title="Title goes here"
         subtitle="Secondary • text"

@@ -1,7 +1,10 @@
+// Dependencies
 @use '@/sass/partials' as *;
 
+// Base tag classes
 .tag {
   box-sizing: border-box;
+  // Force sizing to hug content
   display: inline-block;
   justify-content: center;
   align-items: center;
@@ -12,22 +15,25 @@
   color: $sys-on-surface-variant;
 }
 
+// Default size
 .default {
   @include typography(label, small);
   border-radius: 10px;
 }
 
+// Large size
 .large {
   @include typography(label, large);
   border-radius: 12px;
 }
 
+// Outlined version, no background (inner border)
 .outlined {
   @include innerBorder(1px, $sys-surface-variant);
   background-color: transparent;
 }
 
+// Filled version, no border
 .filled {
-  border: none;
   background-color: $sys-surface-variant;
 }

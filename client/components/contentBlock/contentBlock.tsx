@@ -25,12 +25,14 @@ export const ContentBlock: FC<ContentBlockProps> = ({
   description,
   extra
 }) => {
+  // Join the classes of the content block
   const classes = [
     styles.contentBlock,
     styles[alignement],
     styles[size]
   ].join(' ');
 
+  // Return the react element of the content block
   return (
     <div className={classes}>
       <div className={styles.heading}>

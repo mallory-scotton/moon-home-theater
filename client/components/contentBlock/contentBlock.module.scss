@@ -1,51 +1,63 @@
+// Dependencies
 @use '@/sass/partials' as *;
 
+// Base of the content block
 .contentBlock {
+  // Don't allow mouse interaction with the content block
   user-select: none;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
+// Left alignement
 .left
 .left .heading {
   align-items: flex-start;
 }
 
+// Right alignement
 .right,
 .right .heading {
   align-items: flex-end;
 }
 
+// Center alignement
 .center,
 .center .heading {
   align-items: center;
 }
 
+// Heading block (title/subtitle)
 .heading {
   display: flex;
   flex-direction: column;
 }
 
+// Title color
 .title {
   color: $sys-on-surface;
 }
 
+// Subtitle and the text of the extra share the same color
 .subtitle,
 .extraText {
   color: rgba($sys-on-surface, .6);
 }
 
+// The description color
 .description {
   color: rgba($sys-on-surface, .8);
 }
 
+// Extra layout
 .extra {
   display: flex;
   flex-direction: row;
   gap: 8px;
 }
 
+// Sizing: small
 .small {
   .title {
     @include typography(title, medium);
@@ -58,6 +70,7 @@
   }
 }
 
+// Sizing: medium
 .medium {
   .title {
     @include typography(title, large);
@@ -70,6 +83,7 @@
   }
 }
 
+// Sizing: large
 .large {
   .title {
     @include typography(headline, medium);

@@ -1,73 +1,41 @@
 /** Dependencies */
-import { BrowserWindow, app, Tray, Menu } from 'electron';
-import { productName } from '../package.json';
-import path from 'path';
+import { BrowserWindow, app } from 'electron';
+import { createWindow } from './app/window';
+import { createTray } from './app/tray';
+import dotenv from 'dotenv';
 
-import icon from './assets/icons/favicon.ico';
+// Query the configuration .env
+dotenv.config();
 
-const isDebug = (): boolean => process.env.npm_lifecycle_event === 'start';
-
-declare const MOON_WEBPACK_ENTRY: string;
-declare const MOON_PRELOAD_WEBPACK_ENTRY: string;
-
-// Setup the tray menu
-let tray: Tray | null = null;
-
+// If the electron squirrel startup is required, quit
 if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
-const createTray = () => {
-  tray = new Tray(path.join(__dirname, icon));
-
-  const contextMenu = Menu.buildFromTemplate([
-    {
-      label: 'Show App',
-      click: () => {}
-    },
-    {
-      type: 'separator'
-    },
-    {
-      label: 'Quit',
-      click: () => {}
-    }
-  ]);
-
-  tray.setToolTip('Moon Home Theater');
-  tray.setContextMenu(contextMenu);
-
-  tray.on('click', () => {});
-};
-
-const createWindow = (): void => {
+/**
+ * On application ready, create the tray and the window
+ */
+const onReady = () => {
+  // Create the tray icon
   createTray();
 
-  const window = new BrowserWindow({
-    title: `${productName} ${app.getVersion()}`,
-    minWidth: 1080,
-    minHeight: 720,
-    webPreferences: {
-      preload: MOON_PRELOAD_WEBPACK_ENTRY
-    },
-    icon: path.join(__dirname, icon)
-  });
-
-  if (isDebug()) {
-    window.webContents.openDevTools();
+  // Check if the opening of the windows is enable
+  if (process.env.OPEN_CLIENT_ON_START !== 'false') {
+    createWindow();
   }
+}
 
-  window.loadURL(MOON_WEBPACK_ENTRY);
-};
+// Add the listener on ready
+app.on('ready', onReady);
 
-app.on('ready', createWindow);
-
+// On macOS, it's common for applications to stay open until the user quits explicitly
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
   }
 });
 
+// Prevent non opening windows on activation
 app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();

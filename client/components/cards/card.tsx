@@ -16,11 +16,6 @@ export const Card: FC<CardProps> = ({ variant = 'standard', ratio = '16:9', chil
   // Join the class of the card
   const classes = [styles.card, styles[variant]].join(' ');
 
-  // Validate the children
-  if (Children.count(children) > 1 || children.type !== ContentBlock) {
-    throw new Error('Card component must have a single ContentBlock as its child.');
-  }
-
   // Return the react element
   return (
     <div className={classes}>

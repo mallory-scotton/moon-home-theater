@@ -110,3 +110,52 @@ export const getDirContent = (dirPath: string): Promise<PathContent> => {
     }
   });
 };
+
+export const getFiles = (
+  dirPath: string,
+  options: { extensions?: string[]; recursive?: boolean; root?: string } = {}
+): string[] => {
+  // Prepare a array of string to get the result
+  let results: string[] = [];
+
+  // Set the root path to the dir path
+  if (!options.root) {
+    options.root = dirPath;
+  }
+
+  // Query the item in the dir path
+  const items = fs.readdirSync(dirPath);
+
+  // Loop through each items
+  for (const item of items) {
+    // Get the full and relative path
+    const fullPath = path.join(dirPath, item);
+    const relativePath = path.relative(options.root, fullPath);
+
+    // If the item is a directory
+    if (fs.statSync(fullPath).isDirectory()) {
+      // And the recurvisity is activated
+      if (options.recursive) {
+        // Check in the subfolders
+        results = results.concat(getFiles(fullPath, options));
+      }
+
+      // Skip the next part
+      continue;
+    }
+
+    // Get the extension of the file
+    const ext = path.extname(fullPath).toLowerCase();
+
+    // If the extensions filter is activated and the extension is not in the filter list
+    if (options.extensions && !options.extensions.includes(ext)) {
+      continue;
+    }
+
+    // Otherwise add the relative file path to the results
+    results.push(relativePath);
+  }
+
+  // Return the results
+  return results;
+};

@@ -1,11 +1,11 @@
 // Dependencies
 import fs from 'fs';
 import path from 'path';
-import { APPDATA } from '../../common/constants/path';
 import { logger } from '../../common/utils/logger';
+import { MOON_BASE_PATH } from '.';
 
 // Media path
-export const MEDIA_PATH = path.join(APPDATA, 'Moon Home Theater', 'Media');
+export const MEDIA_PATH = path.join(MOON_BASE_PATH, 'Media');
 
 // Verify media path
 try {

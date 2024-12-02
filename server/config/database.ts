@@ -2,9 +2,9 @@
 import { Sequelize } from 'sequelize-typescript';
 import { SyncOptions } from 'sequelize';
 import { join } from 'path';
-import { APPDATA } from '../../common/constants/path';
 import { mkdirSync } from 'fs';
 import { logger } from '../../common/utils/logger';
+import { MOON_BASE_PATH } from '.';
 
 // Models
 import { Directory } from '../models/directory.model';
@@ -21,7 +21,7 @@ import { MediaItem } from '../models/mediaItem.model';
 import { MetadataItem } from '../models/metadataItem.model';
 
 // Constant for the moon database
-export const DATABASE_PATH = join(APPDATA, 'Moon Home Theater', 'Databases');
+export const DATABASE_PATH = join(MOON_BASE_PATH, 'Databases');
 
 // Build the database
 export const database = new Sequelize({

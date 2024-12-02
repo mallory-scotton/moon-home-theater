@@ -46,7 +46,7 @@ export const browseHomeController: RequestHandler = async (req, res) => {
 export const browsePathController: RequestHandler = (req, res) => {
   try {
     const { guid } = req.params;
-    const { include_files } = req.value;
+    const { includeFiles } = req.value;
 
     let decodedPath: string;
     try {
@@ -80,8 +80,8 @@ export const browsePathController: RequestHandler = (req, res) => {
               res.status(200).json({
                 paths: content.paths,
                 pathsCount: content.paths.length,
-                files: include_files ? content.files : undefined,
-                filesCount: include_files ? content.files.length : undefined
+                files: includeFiles ? content.files : undefined,
+                filesCount: includeFiles ? content.files.length : undefined
               });
             })
             .catch(() => {

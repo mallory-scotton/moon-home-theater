@@ -1,5 +1,5 @@
 // Dependencies
-import { FC } from 'react';
+import { JSX } from 'react';
 import styles from './tag.module.scss';
 
 // Component Props
@@ -10,7 +10,7 @@ interface TagProps {
 }
 
 // React Component
-export const Tag: FC<TagProps> = ({ size = 'default', outlined = false, label }) => {
+export const Tag = ({ size = 'default', outlined = false, label }: TagProps): JSX.Element => {
   // Get the classes of the tag component
   const classes = [styles.tag, styles[size], outlined ? styles.outlined : styles.filled].join(' ');
 

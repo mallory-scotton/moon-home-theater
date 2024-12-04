@@ -1,5 +1,5 @@
 // Dependencies
-import { FC } from 'react';
+import { JSX } from 'react';
 import styles from './contentBlock.module.scss';
 import { Tag } from '@/components/primitives';
 
@@ -17,14 +17,14 @@ interface ContentBlockProps {
 }
 
 // React Components
-export const ContentBlock: FC<ContentBlockProps> = ({
+export const ContentBlock = ({
   alignement = 'center',
   size = 'medium',
   title,
   subtitle,
   description,
   extra
-}) => {
+}: ContentBlockProps): JSX.Element => {
   // Join the classes of the content block
   const classes = [styles.contentBlock, styles[alignement], styles[size]].join(' ');
 

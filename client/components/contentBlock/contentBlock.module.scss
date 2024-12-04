@@ -12,18 +12,21 @@
 
 // Left alignement
 .left .left .heading {
+  text-align: start;
   align-items: flex-start;
 }
 
 // Right alignement
 .right,
 .right .heading {
+  text-align: end;
   align-items: flex-end;
 }
 
 // Center alignement
 .center,
 .center .heading {
+  text-align: center;
   align-items: center;
 }
 

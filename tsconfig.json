@@ -19,6 +19,7 @@
       "@/server/*": ["server/*"],
       "@/common/*": ["common/*"],
       "@/components/*": ["client/components/*"],
+      "@/models/*": ["server/models/*"],
       "@/services/*": ["server/services/*"],
       "@/routes/*": ["server/routes/*"],
       "@/middlewares/*": ["server/middlewares/*"],

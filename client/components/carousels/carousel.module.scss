@@ -1,0 +1,36 @@
+@use '@/sass/partials/layouts' as *;
+
+// Carousel item gap variables
+$carousel-item-gap: 20px;
+
+// Main carousel container
+.carousel {
+  display: flex;
+  gap: $carousel-item-gap;
+  overflow-x: visible;
+  white-space: nowrap;
+  padding-left: $layout-grid-column-padding;
+  transition: 0.2s transform ease;
+}
+
+// Card styling
+.carousel > div {
+  flex: 0 0 auto;
+}
+
+// Adjust direction of the carousel
+.row {
+  flex-direction: row;
+}
+
+// Adjust direction of the carousel
+.column {
+  flex-direction: column;
+}
+
+// Custom sizing for the columns
+@for $i from 2 through 6 {
+  .row.column-#{$i} > div {
+    width: calc((100% - #{$layout-grid-column-padding} - #{$carousel-item-gap} * (#{$i} - 1)) / #{$i});
+  }
+}

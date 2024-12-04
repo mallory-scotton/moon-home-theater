@@ -12,6 +12,22 @@ import { Carousel } from '@/components/carousels';
 // Images
 import poster from '@/assets/template/poster.png';
 
+const POSTERS: string[] = [
+  'https://image.tmdb.org/t/p/w780/3ehMpKNXSK8atX3sVtWXqZSWGrf.jpg',
+  'https://image.tmdb.org/t/p/w780/pv6VZMLO20GNBt3Mbxxcpoo3lM0.jpg',
+  'https://image.tmdb.org/t/p/w780/86funb4NWWxp33eLIZuQrYEWg71.jpg',
+  'https://image.tmdb.org/t/p/w780/3QkvxgRkgV9mTXXVRC5VdYe4yl.jpg',
+  'https://image.tmdb.org/t/p/w780/ndgaAkooNS1Bw1FCmRHOPgcyPAg.jpg',
+  'https://image.tmdb.org/t/p/w780/2bkjybhoCkbc1qRhlddyjBafU5.jpg',
+  'https://image.tmdb.org/t/p/w780/x6OSrIgRRueeTQ63PoZfUgwpceK.jpg',
+  'https://image.tmdb.org/t/p/w780/iAzcDIsUU6E18TgJo530j1IDBW0.jpg',
+  'https://image.tmdb.org/t/p/w780/aQ6uUrVM6beU29tbybXN4oKcIJd.jpg',
+  'https://image.tmdb.org/t/p/w780/4G7mBrbxnPXZqteZrGVhQbk7CvF.jpg',
+  'https://image.tmdb.org/t/p/w780/7onsvPfhN6Ezymw2AntoAijqDHX.jpg'
+];
+
+const randomPoster = (): string => POSTERS[Math.floor(Math.random() * POSTERS.length)];
+
 const CarouselFactory = ({
   columnCount,
   scrollTo
@@ -25,7 +41,7 @@ const CarouselFactory = ({
         const childs: ReactElement<typeof Card>[] = [];
         for (let i = 0; i < columnCount + 1; i++) {
           childs.push(
-            <Card src={poster} key={i}>
+            <Card src={randomPoster()} key={i}>
               <ContentBlock title="Acts of War" alignement="center" size="small" />
             </Card>
           );
@@ -36,14 +52,12 @@ const CarouselFactory = ({
   );
 };
 
-let scrollTo = 0;
-
 const App = (): JSX.Element => {
   const [scrollTo, setScrollTo] = useState(0);
 
   const handleClick: MouseEventHandler = (event) => {
     if (event.ctrlKey) setScrollTo((prev) => prev - 1);
-    else setScrollTo((prev) => prev + 1)
+    else setScrollTo((prev) => prev + 1);
   };
 
   return (
@@ -68,4 +82,4 @@ const App = (): JSX.Element => {
   );
 };
 
-render(<App/>, document.getElementById('app'));
+render(<App />, document.getElementById('app'));

@@ -20,10 +20,10 @@ const onReady = () => {
   createTray();
 
   // Check if the opening of the windows is enable
-  if (process.env.OPEN_CLIENT_ON_START !== 'false') {
+  if (process.env.OPEN_CLIENT_ON_START !== 'false' && process.argv.includes('--no-client')) {
     createWindow();
   }
-}
+};
 
 // Add the listener on ready
 app.on('ready', onReady);

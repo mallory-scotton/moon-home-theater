@@ -1,11 +1,19 @@
 @use './partials' as *;
 
+// Global rules
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+// Main body styling
 body {
   background-color: $sys-background;
+  overflow-x: hidden;
+}
+
+// Scrollbar styling
+::-webkit-scrollbar {
+  display: none;
 }

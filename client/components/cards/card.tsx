@@ -1,5 +1,5 @@
 // Dependencies
-import { ReactElement, JSX } from 'react';
+import { ReactElement, JSX, CSSProperties } from 'react';
 import styles from './card.module.scss';
 import { ContentBlock } from '@/components/contentBlock';
 
@@ -9,17 +9,19 @@ interface CardProps {
   ratio?: '16:9' | '1:1' | '2:3';
   children?: ReactElement<typeof ContentBlock>;
   src: string;
+  style?: CSSProperties;
 }
 
 // React Component
-export const Card = ({ variant = 'standard', ratio = '16:9', children, src }: CardProps): JSX.Element => {
-  // Join the class of the card
-  const classes = [styles.card, styles[variant]].join(' ');
-
+export const Card = ({ variant = 'standard', ratio = '16:9', children, src, style }: CardProps): JSX.Element => {
   // Return the react element
   return (
-    <div className={classes}>
-      <img src={src} />
+    <div className={[styles.card, styles[variant]].join(' ')} style={style}>
+      <img
+        src={src}
+        className={[styles.cardImage, styles['r' + ratio.replace(':', 'x')]].join(' ')}
+        draggable={false}
+      />
       {children}
     </div>
   );

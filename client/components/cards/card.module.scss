@@ -1,1 +1,38 @@
+// Card main container
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transform: scale(1);
+  transition: .2s transform;
+}
 
+// On card hover or focus
+.card:hover, .card:focus {
+  transform: scale(1.1);
+}
+
+// On card active
+.card:active {
+  transform: scale(1);
+}
+
+// Image of the card
+.cardImage {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  display: block;
+}
+
+.cardImage.r16x9 {
+  aspect-ratio: 16/9;
+}
+
+.cardImage.r1x1 {
+  aspect-ratio: 1/1;
+}
+
+.cardImage.r2x3 {
+  aspect-ratio: 2/3;
+}

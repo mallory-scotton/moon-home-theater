@@ -27,8 +27,8 @@ export const createWindow = () => {
   // Create the new window
   window = new BrowserWindow({
     title: productName,
-    minWidth: 1280,
-    minHeight: 720,
+    minWidth: 960,
+    minHeight: 540,
     webPreferences: {
       preload: MOON_PRELOAD_WEBPACK_ENTRY,
       devTools: IS_DEBUG

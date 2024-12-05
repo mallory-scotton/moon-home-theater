@@ -71,7 +71,7 @@ export interface FfprobeFormat {
   format_long_name?: string;
   start_time?: number;
   duration?: number;
-  size?: number;
+  size?: string;
   bit_rate?: number;
   probe_score?: number;
   tags?: Record<string, string | number>;

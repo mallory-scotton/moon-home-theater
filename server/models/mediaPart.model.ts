@@ -18,14 +18,13 @@ import { Directory } from './directory.model';
 import { MediaStream } from './mediaStream.model';
 
 @Table({
-  tableName: 'media_parts',
+  tableName: 'MediaParts',
   timestamps: true,
   freezeTableName: true,
-  underscored: true,
   paranoid: true,
-  createdAt: 'created_at',
-  updatedAt: 'updated_at',
-  deletedAt: 'deleted_at'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
 })
 export class MediaPart extends Model<MediaPart> {
   @PrimaryKey
@@ -35,11 +34,11 @@ export class MediaPart extends Model<MediaPart> {
 
   @ForeignKey(() => MediaItem)
   @Column
-  media_item_id!: number;
+  mediaItemId!: number;
 
   @ForeignKey(() => Directory)
   @Column
-  directory_id!: number;
+  directoryId!: number;
 
   @Column
   hash!: string;
@@ -55,27 +54,27 @@ export class MediaPart extends Model<MediaPart> {
 
   @AllowNull
   @Column
-  extra_data?: string;
+  extraData?: string;
 
   @CreatedAt
   @Column
-  created_at!: Date;
+  createdAt!: Date;
 
   @UpdatedAt
   @Column
-  updated_at!: Date;
+  updatedAt!: Date;
 
   @DeletedAt
   @AllowNull
   @Column
-  deleted_at?: Date;
+  deletedAt?: Date;
 
-  @BelongsTo(() => MediaItem, 'media_item_id')
-  media_item?: MediaItem;
+  @BelongsTo(() => MediaItem, 'mediaItemId')
+  mediaItem?: MediaItem;
 
-  @BelongsTo(() => Directory, 'directory_id')
+  @BelongsTo(() => Directory, 'directoryId')
   directory?: Directory;
 
-  @HasMany(() => MediaStream, 'media_part_id')
-  media_streams?: MediaStream[];
+  @HasMany(() => MediaStream, 'mediaPartId')
+  mediaStreams?: MediaStream[];
 }

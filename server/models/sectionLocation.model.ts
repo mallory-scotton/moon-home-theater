@@ -9,18 +9,18 @@ import {
   CreatedAt,
   UpdatedAt,
   Default,
-  HasMany
+  HasMany,
+  BelongsTo
 } from 'sequelize-typescript';
 import { LibrarySection } from './librarySection.model';
 import { MediaItem } from './mediaItem.model';
 
 @Table({
-  tableName: 'section_locations',
+  tableName: 'SectionLocations',
   timestamps: true,
   freezeTableName: true,
-  underscored: true,
-  createdAt: 'created_at',
-  updatedAt: 'updated_at'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 })
 export class SectionLocation extends Model<SectionLocation> {
   @PrimaryKey
@@ -30,10 +30,10 @@ export class SectionLocation extends Model<SectionLocation> {
 
   @ForeignKey(() => LibrarySection)
   @Column
-  library_section_id!: number;
+  librarySectionId!: number;
 
   @Column
-  root_path!: string;
+  rootPath!: string;
 
   @Default(true)
   @Column
@@ -41,12 +41,15 @@ export class SectionLocation extends Model<SectionLocation> {
 
   @CreatedAt
   @Column
-  created_at!: Date;
+  createdAt!: Date;
 
   @UpdatedAt
   @Column
-  updated_at!: Date;
+  updatedAt!: Date;
 
-  @HasMany(() => MediaItem, 'section_location_id')
-  media_items?: MediaItem[];
+  @BelongsTo(() => LibrarySection, 'librarySectionId')
+  librarySection?: LibrarySection;
+
+  @HasMany(() => MediaItem, 'sectionLocationId')
+  mediaItems?: MediaItem[];
 }

@@ -21,14 +21,13 @@ import { MediaStream } from './mediaStream.model';
 import { MediaPart } from './mediaPart.model';
 
 @Table({
-  tableName: 'media_items',
+  tableName: 'MediaItems',
   timestamps: true,
   freezeTableName: true,
-  underscored: true,
   paranoid: true,
-  createdAt: 'created_at',
-  updatedAt: 'updated_at',
-  deletedAt: 'deleted_at'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
 })
 export class MediaItem extends Model<MediaItem> {
   @PrimaryKey
@@ -38,15 +37,15 @@ export class MediaItem extends Model<MediaItem> {
 
   @ForeignKey(() => LibrarySection)
   @Column
-  library_section_id!: number;
+  librarySectionId!: number;
 
   @ForeignKey(() => SectionLocation)
   @Column
-  section_location_id!: number;
+  sectionLocationId!: number;
 
   @ForeignKey(() => MetadataItem)
   @Column
-  metadata_item_id!: number;
+  metadataItemId!: number;
 
   @Column
   width!: number;
@@ -67,22 +66,22 @@ export class MediaItem extends Model<MediaItem> {
   container!: string;
 
   @Column
-  video_codec!: string;
+  videoCodec!: string;
 
   @Column
-  audio_codec!: string;
+  audioCodec!: string;
 
   @Column
-  display_aspect_ratio!: number;
+  displayAspectRatio!: number;
 
   @Column
-  sample_aspect_ratio!: number;
+  sampleAspectRatio!: number;
 
   @Column
-  frames_per_second!: number;
+  framesPerSecond!: number;
 
   @Column
-  audio_channels!: number;
+  audioChannels!: number;
 
   @AllowNull
   @Column
@@ -93,7 +92,7 @@ export class MediaItem extends Model<MediaItem> {
   hints?: string;
 
   @Column
-  display_offset!: number;
+  displayOffset!: number;
 
   @AllowNull
   @Column
@@ -101,41 +100,41 @@ export class MediaItem extends Model<MediaItem> {
 
   @AllowNull
   @Column
-  begins_at?: number;
+  beginsAt?: number;
 
   @AllowNull
   @Column
-  ends_at?: number;
+  endsAt?: number;
 
   @AllowNull
   @Column
-  color_trc?: string;
+  colorTrc?: string;
 
   @CreatedAt
   @Column
-  created_at!: Date;
+  createdAt!: Date;
 
   @UpdatedAt
   @Column
-  updated_at!: Date;
+  updatedAt!: Date;
 
   @DeletedAt
   @AllowNull
   @Column
-  deleted_at?: Date;
+  deletedAt?: Date;
 
-  @BelongsTo(() => LibrarySection, 'library_section_id')
-  library_section?: LibrarySection;
+  @BelongsTo(() => LibrarySection, 'librarySectionId')
+  librarySection?: LibrarySection;
 
-  @BelongsTo(() => SectionLocation, 'section_location_id')
-  section_location?: SectionLocation;
+  @BelongsTo(() => SectionLocation, 'sectionLocationId')
+  sectionLocation?: SectionLocation;
 
-  @BelongsTo(() => MetadataItem, 'metadata_item_id')
-  metadata_item?: MetadataItem;
+  @BelongsTo(() => MetadataItem, 'metadataItemId')
+  metadataItem?: MetadataItem;
 
-  @HasMany(() => MediaStream, 'media_item_id')
-  media_streams?: MediaStream[];
+  @HasMany(() => MediaStream, 'mediaItemId')
+  mediaStreams?: MediaStream[];
 
-  @HasOne(() => MediaPart, 'media_item_id')
-  media_part?: MediaPart;
+  @HasOne(() => MediaPart, 'mediaItemId')
+  mediaPart?: MediaPart;
 }

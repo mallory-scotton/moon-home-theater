@@ -16,12 +16,11 @@ import { MediaItem } from './mediaItem.model';
 import { MediaPart } from './mediaPart.model';
 
 @Table({
-  tableName: 'media_streams',
+  tableName: 'MediaStreams',
   timestamps: true,
   freezeTableName: true,
-  underscored: true,
-  createdAt: 'created_at',
-  updatedAt: 'updated_at'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 })
 export class MediaStream extends Model<MediaStream> {
   @PrimaryKey
@@ -30,15 +29,15 @@ export class MediaStream extends Model<MediaStream> {
   id!: number;
 
   @Column
-  stream_type!: number;
+  streamType!: number;
 
   @ForeignKey(() => MediaItem)
   @Column
-  media_item_id!: number;
+  mediaItemId!: number;
 
   @ForeignKey(() => MediaPart)
   @Column
-  media_part_id!: number;
+  mediaPartId!: number;
 
   @Column
   codec!: string;
@@ -49,11 +48,11 @@ export class MediaStream extends Model<MediaStream> {
 
   @CreatedAt
   @Column
-  created_at!: Date;
+  createdAt!: Date;
 
   @UpdatedAt
   @Column
-  updated_at!: Date;
+  updatedAt!: Date;
 
   @Column
   index!: number;
@@ -74,11 +73,11 @@ export class MediaStream extends Model<MediaStream> {
 
   @AllowNull
   @Column
-  extra_data?: string;
+  extraData?: string;
 
-  @BelongsTo(() => MediaItem, 'media_item_id')
-  media_item?: MediaItem;
+  @BelongsTo(() => MediaItem, 'mediaItemId')
+  mediaItem?: MediaItem;
 
-  @BelongsTo(() => MediaPart, 'media_part_id')
-  media_part?: MediaPart;
+  @BelongsTo(() => MediaPart, 'mediaPartId')
+  mediaPart?: MediaPart;
 }

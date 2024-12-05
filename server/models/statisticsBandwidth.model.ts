@@ -3,10 +3,9 @@ import { Table, Column, Model, PrimaryKey, AutoIncrement, ForeignKey, BelongsTo 
 import { Account } from './account.model';
 
 @Table({
-  tableName: 'statistics_bandwidth',
+  tableName: 'StatisticsBandwidth',
   timestamps: false,
-  freezeTableName: true,
-  underscored: true
+  freezeTableName: true
 })
 export class StatisticsBandwidth extends Model<StatisticsBandwidth> {
   @PrimaryKey
@@ -16,7 +15,7 @@ export class StatisticsBandwidth extends Model<StatisticsBandwidth> {
 
   @ForeignKey(() => Account)
   @Column
-  account_id!: number;
+  accountId!: number;
 
   @Column
   at!: Date;
@@ -24,6 +23,6 @@ export class StatisticsBandwidth extends Model<StatisticsBandwidth> {
   @Column
   bytes!: number;
 
-  @BelongsTo(() => Account, 'account_id')
+  @BelongsTo(() => Account, 'accountId')
   account?: Account;
 }

@@ -16,14 +16,13 @@ import {
 import { MediaPart } from './mediaPart.model';
 
 @Table({
-  tableName: 'directories',
+  tableName: 'Directories',
   timestamps: true,
   freezeTableName: true,
-  underscored: true,
   paranoid: true,
-  createdAt: 'created_at',
-  updatedAt: 'updated_at',
-  deletedAt: 'deleted_at'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
 })
 export class Directory extends Model<Directory> {
   @PrimaryKey
@@ -37,27 +36,27 @@ export class Directory extends Model<Directory> {
   @ForeignKey(() => Directory)
   @AllowNull
   @Column
-  parent_directory_id?: number;
+  parentDirectoryId?: number;
 
   @CreatedAt
   @Column
-  created_at!: Date;
+  createdAt!: Date;
 
   @UpdatedAt
   @Column
-  updated_at!: Date;
+  updatedAt!: Date;
 
   @DeletedAt
   @AllowNull
   @Column
-  deleted_at?: Date;
+  deletedAt?: Date;
 
-  @BelongsTo(() => Directory, 'parent_directory_id')
-  parent_directory?: Directory;
+  @BelongsTo(() => Directory, 'parentDirectoryId')
+  parentDirectory?: Directory;
 
-  @HasMany(() => Directory, 'parent_directory_id')
-  children_directories?: Directory[];
+  @HasMany(() => Directory, 'parentDirectoryId')
+  childrenDirectories?: Directory[];
 
-  @HasMany(() => MediaPart, 'directory_id')
-  media_parts?: MediaPart[];
+  @HasMany(() => MediaPart, 'directoryId')
+  mediaParts?: MediaPart[];
 }

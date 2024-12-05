@@ -2,10 +2,9 @@
 import { Table, Column, Model, PrimaryKey, AutoIncrement } from 'sequelize-typescript';
 
 @Table({
-  tableName: 'preferences',
+  tableName: 'Preferences',
   timestamps: false,
-  freezeTableName: true,
-  underscored: true
+  freezeTableName: true
 })
 export class Preference extends Model<Preference> {
   @PrimaryKey

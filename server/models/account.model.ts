@@ -15,12 +15,11 @@ import { StatisticsBandwidth } from './statisticsBandwidth.model';
 import { LibrarySectionPermission } from './librarySectionPermission.model';
 
 @Table({
-  tableName: 'accounts',
+  tableName: 'Accounts',
   timestamps: true,
   freezeTableName: true,
-  underscored: true,
-  createdAt: 'created_at',
-  updatedAt: 'updated_at'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 })
 export class Account extends Model<Account> {
   @PrimaryKey
@@ -33,7 +32,7 @@ export class Account extends Model<Account> {
 
   @AllowNull
   @Column
-  hashed_password?: string;
+  hashedPassword?: string;
 
   @AllowNull
   @Column
@@ -41,29 +40,29 @@ export class Account extends Model<Account> {
 
   @CreatedAt
   @Column
-  created_at!: Date;
+  createdAt!: Date;
 
   @UpdatedAt
   @Column
-  updated_at!: Date;
+  updatedAt!: Date;
 
   @Column
-  default_audio_language!: string;
+  defaultAudioLanguage!: string;
 
   @Column
-  default_subtitle_language!: string;
+  defaultSubtitleLanguage!: string;
 
   @Default(true)
   @Column
-  auto_select_subtitle!: boolean;
+  autoSelectSubtitle!: boolean;
 
   @Default(true)
   @Column
-  auto_select_audio!: boolean;
+  autoSelectAudio!: boolean;
 
-  @HasMany(() => StatisticsBandwidth, 'account_id')
-  statistics_bandwidth?: StatisticsBandwidth[];
+  @HasMany(() => StatisticsBandwidth, 'accountId')
+  statisticsBandwidth?: StatisticsBandwidth[];
 
-  @HasMany(() => LibrarySectionPermission, 'account_id')
-  library_section_permissions?: LibrarySectionPermission[];
+  @HasMany(() => LibrarySectionPermission, 'accountId')
+  librarySectionPermissions?: LibrarySectionPermission[];
 }

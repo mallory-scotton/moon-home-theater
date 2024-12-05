@@ -2,10 +2,9 @@
 import { Table, Column, Model, PrimaryKey, AutoIncrement } from 'sequelize-typescript';
 
 @Table({
-  tableName: 'statistics_resources',
+  tableName: 'StatisticsResources',
   timestamps: false,
-  freezeTableName: true,
-  underscored: true
+  freezeTableName: true
 })
 export class StatisticsResouces extends Model<StatisticsResouces> {
   @PrimaryKey
@@ -17,14 +16,14 @@ export class StatisticsResouces extends Model<StatisticsResouces> {
   at!: Date;
 
   @Column
-  host_cpu_utilization!: number;
+  hostCpuUtilization!: number;
 
   @Column
-  process_cpu_utilization!: number;
+  processCpuUtilization!: number;
 
   @Column
-  host_memory_utilization!: number;
+  hostMemoryUtilization!: number;
 
   @Column
-  process_memory_utilization!: number;
+  processMemoryUtilization!: number;
 }

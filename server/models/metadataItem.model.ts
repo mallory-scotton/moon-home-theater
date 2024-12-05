@@ -17,14 +17,13 @@ import { MediaItem } from './mediaItem.model';
 import { LibrarySection } from './librarySection.model';
 
 @Table({
-  tableName: 'metadata_items',
+  tableName: 'MetadataItems',
   timestamps: true,
   freezeTableName: true,
-  underscored: true,
   paranoid: true,
-  createdAt: 'created_at',
-  updatedAt: 'updated_at',
-  deletedAt: 'deleted_at'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
 })
 export class MetadataItem extends Model<MetadataItem> {
   @PrimaryKey
@@ -34,31 +33,37 @@ export class MetadataItem extends Model<MetadataItem> {
 
   @ForeignKey(() => LibrarySection)
   @Column
-  library_section_id!: number;
+  librarySectionId!: number;
 
   @ForeignKey(() => MetadataItem)
   @AllowNull
   @Column
-  parent_id?: number;
+  parentId?: number;
 
   @Column
-  metadata_type!: number;
+  metadataType!: number;
+
+  @Column
+  tmdbId?: number;
+
+  @Column
+  imdbId?: string;
 
   @Column
   hash!: string;
 
   @Column
-  media_item_count!: number;
+  mediaItemCount!: number;
 
   @Column
   title!: string;
 
   @Column
-  title_sort!: string;
+  titleSort!: string;
 
   @AllowNull
   @Column
-  original_title?: string;
+  originalTitle?: string;
 
   @AllowNull
   @Column
@@ -70,7 +75,7 @@ export class MetadataItem extends Model<MetadataItem> {
 
   @AllowNull
   @Column
-  rating_count?: number;
+  ratingCount?: number;
 
   @AllowNull
   @Column
@@ -90,11 +95,11 @@ export class MetadataItem extends Model<MetadataItem> {
 
   @AllowNull
   @Column
-  content_rating?: string;
+  contentRating?: string;
 
   @AllowNull
   @Column
-  content_rating_age?: string;
+  contentRatingAge?: string;
 
   @AllowNull
   @Column
@@ -102,50 +107,50 @@ export class MetadataItem extends Model<MetadataItem> {
 
   @AllowNull
   @Column
-  user_thumb_url?: string;
+  userThumbUrl?: string;
 
   @AllowNull
   @Column
-  user_art_url?: string;
+  userArtUrl?: string;
 
   @AllowNull
   @Column
-  user_banner_url?: string;
+  userBannerUrl?: string;
 
   @AllowNull
   @Column
-  user_music_url?: string;
+  userMusicUrl?: string;
 
   @AllowNull
   @Column
-  tags_genre?: string;
+  tagsGenre?: string;
 
   @AllowNull
   @Column
-  tags_collection?: string;
+  tagsCollection?: string;
 
   @AllowNull
   @Column
-  tags_director?: string;
+  tagsDirector?: string;
 
   @AllowNull
   @Column
-  tags_writer?: string;
+  tagsWriter?: string;
 
   @AllowNull
   @Column
-  tags_star?: string;
+  tagsStar?: string;
 
   @AllowNull
   @Column
-  tags_country?: string;
+  tagsCountry?: string;
 
   @AllowNull
   @Column
-  originally_available_at?: Date;
+  originallyAvailableAt?: Date;
 
   @Column
-  refreshed_at!: Date;
+  refreshedAt!: Date;
 
   @AllowNull
   @Column
@@ -153,31 +158,31 @@ export class MetadataItem extends Model<MetadataItem> {
 
   @AllowNull
   @Column
-  extra_data?: string;
+  extraData?: string;
 
   @AllowNull
   @Column
-  audience_rating?: number;
+  audienceRating?: number;
 
   @CreatedAt
   @Column
-  created_at!: Date;
+  createdAt!: Date;
 
   @UpdatedAt
   @Column
-  updated_at!: Date;
+  updatedAt!: Date;
 
   @DeletedAt
   @AllowNull
   @Column
-  deleted_at?: Date;
+  deletedAt?: Date;
 
-  @HasMany(() => MediaItem, 'metadata_item_id')
-  media_items?: MediaItem[];
+  @HasMany(() => MediaItem, 'metadataItemId')
+  mediaItems?: MediaItem[];
 
-  @BelongsTo(() => LibrarySection, 'library_section_id')
-  library_section?: LibrarySection;
+  @BelongsTo(() => LibrarySection, 'librarySectionId')
+  librarySection?: LibrarySection;
 
-  @BelongsTo(() => MetadataItem, 'parent_id')
+  @BelongsTo(() => MetadataItem, 'parentId')
   parent?: MetadataItem;
 }

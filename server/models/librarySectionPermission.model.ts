@@ -4,10 +4,9 @@ import { LibrarySection } from './librarySection.model';
 import { Account } from './account.model';
 
 @Table({
-  tableName: 'library_section_permissions',
+  tableName: 'LibrarySectionPermissions',
   timestamps: false,
-  freezeTableName: true,
-  underscored: true
+  freezeTableName: true
 })
 export class LibrarySectionPermission extends Model<LibrarySectionPermission> {
   @PrimaryKey
@@ -17,18 +16,18 @@ export class LibrarySectionPermission extends Model<LibrarySectionPermission> {
 
   @ForeignKey(() => LibrarySection)
   @Column
-  library_section_id!: number;
+  librarySectionId!: number;
 
   @ForeignKey(() => Account)
   @Column
-  account_id!: number;
+  accountId!: number;
 
   @Column
   permission!: string;
 
-  @BelongsTo(() => LibrarySection, 'library_section_id')
-  library_section!: LibrarySection;
+  @BelongsTo(() => LibrarySection, 'librarySectionId')
+  librarySection!: LibrarySection;
 
-  @BelongsTo(() => Account, 'account_id')
+  @BelongsTo(() => Account, 'accountId')
   account!: Account;
 }

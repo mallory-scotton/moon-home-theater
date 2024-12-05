@@ -1,17 +1,34 @@
 // Dependencies
 import { RequestHandler } from 'express';
-import { LibrarySection } from '@/models/librarySection.model';
+import { LibrarySection, SectionLocation } from '../../models';
 import { logger } from '../../../common/utils/logger';
 import { paginate } from '../../../common/utils/api';
 
+/**
+ * Handle the request to get all the library sections
+ * @param req The HTTP request
+ * @param res The HTTP response
+ */
 const getAllSections: RequestHandler = (req, res) => {
-  paginate(LibrarySection, {}, req.value?.page)
+  paginate(
+    LibrarySection,
+    {
+      include: [
+        {
+          model: SectionLocation,
+          attributes: { exclude: ['createdAt', 'updatedAt', 'librarySectionId', 'id'] }
+        }
+      ]
+    },
+    req.value?.page
+  )
     .then((data) => {
       res.status(200).json(data);
-    }).catch((error) => {
-    logger.error('Error while querying database for all library sections:', error);
-    res.status(500).send({ status: 'Error', statusMessage: 'Internal server error while querying for sections.' });
-  });
+    })
+    .catch((error) => {
+      logger.error('Error while querying database for all library sections:', error);
+      res.status(500).send({ status: 'Error', statusMessage: 'Internal server error while querying for sections.' });
+    });
 };
 
 const getSectionById: RequestHandler = (req, res) => {};

@@ -7,18 +7,20 @@ import { logger } from '../../common/utils/logger';
 import { MOON_BASE_PATH } from '.';
 
 // Models
-import { Directory } from '../models/directory.model';
-import { Account } from '../models/account.model';
-import { LibrarySection } from '../models/librarySection.model';
-import { LibrarySectionPermission } from '../models/librarySectionPermission.model';
-import { SectionLocation } from '../models/sectionLocation.model';
-import { Preference } from '../models/preference.model';
-import { StatisticsBandwidth } from '../models/statisticsBandwidth.model';
-import { StatisticsResouces } from '../models/statisticsResources.model';
-import { MediaStream } from '../models/mediaStream.model';
-import { MediaPart } from '../models/mediaPart.model';
-import { MediaItem } from '../models/mediaItem.model';
-import { MetadataItem } from '../models/metadataItem.model';
+import {
+  Directory,
+  Account,
+  LibrarySection,
+  LibrarySectionPermission,
+  SectionLocation,
+  Preference,
+  StatisticsBandwidth,
+  StatisticsResouces,
+  MediaStream,
+  MediaPart,
+  MediaItem,
+  MetadataItem
+} from '../models';
 
 // Constant for the moon database
 export const DATABASE_PATH = join(MOON_BASE_PATH, 'Databases');

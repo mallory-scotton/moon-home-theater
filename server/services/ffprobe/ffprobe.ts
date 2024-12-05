@@ -16,9 +16,6 @@ class FFPROBE {
    * @returns The spawned child process
    */
   public spawn(args: readonly string[] | undefined): cp.ChildProcess {
-    console.log(FFPROBE_PATH);
-    console.log(args);
-
     // Spawn the child process
     const child = cp.spawn('ffprobe', args, {
       cwd: path.dirname(FFPROBE_PATH)
